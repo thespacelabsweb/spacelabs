@@ -12,19 +12,19 @@ flowchart TD
     B --> C[Set Launch Point Coordinates]
     C --> D[Set Target Coordinates]
     D --> E[Set Initial Projectile States]
-    E --> F[Call onboard_guidance_algorithm_3]
+    E --> F[Call Main Function]
 
     F --> G[Initialize Guidance Parameters]
-    G --> H[Convert Target to ECI: geodeticToECI]
+    G --> H[Convert Target Coordinates to ECI Frame]
     H --> I[Main Guidance Loop Start]
 
     I --> J{Check Loop Conditions}
-    J -->|Continue| K[Convert ECI to Local: ECI_to_Local]
+    J -->|Continue| K[Convert ECI Frame to Local Frame]
     J -->|Exit| Z[End Guidance]
 
-    K --> L[Convert Velocity to Local: ECI_to_Local_vel]
+    K --> L[Convert Velocity to Local Frame]
     L --> M[Calculate Current States]
-    M --> N[Calculate Vector to Target]
+    M --> N[Calculate Vector Coordinates to Target Cordinates]
     N --> O[Calculate Distance and Unit Vectors]
 
     O --> P{Check Terminal Phase}
@@ -38,7 +38,7 @@ flowchart TD
     V --> W[Calculate Time-to-Go]
     W --> X[Calculate Final Acceleration Commands]
 
-    Q --> Y[Convert to ECI: Local_to_ECI_vel]
+    Q --> Y[Convert to ECI Frame]
     X --> Y
     Y --> AA[Calculate Drag Forces]
     AA --> BB[Calculate Gravity Effects]
