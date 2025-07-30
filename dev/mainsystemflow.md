@@ -8,7 +8,7 @@ This flowchart represents the function call hierarchy and data flow for the onbo
 
 ```mermaid
 flowchart TD
-    A[Start] --> B[Initialize System Parameters]
+    A[NAVIGATION] --> B[Stated of the projectile in ECI frame]
     B --> C[Set Launch Point Coordinates]
     C --> D[Set Target Coordinates]
     D --> E[Set Initial Projectile States]
