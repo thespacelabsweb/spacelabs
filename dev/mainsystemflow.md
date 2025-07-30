@@ -88,7 +88,7 @@ flowchart TD
     E2 --> F2[Apply Quaternion Transform]
     F2 --> G2[Calculate Impact Angle Error]
     G2 --> H2[Calculate Time-to-Go]
-    H2 --> I2[Apply Sigma Function]
+    H2 --> I2[Apply Sign Function]
     I2 --> J2[Calculate Final Commands]
 
     J2 --> K2[Output Acceleration Commands]
