@@ -1,5 +1,63 @@
 
 <style>
+  /* Login Modal Styles */
+  #loginModal {
+    display: flex;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.25);
+    align-items: center;
+    justify-content: center;
+  }
+  #loginBox {
+    background: #fff;
+    padding: 32px 36px 28px 36px;
+    border-radius: 8px;
+    box-shadow: 0 2px 16px rgba(42,77,105,0.13);
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #loginBox h2 {
+    margin: 0 0 18px 0;
+    color: #2a4d69;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+  }
+  #loginBox input {
+    margin-bottom: 14px;
+    padding: 8px 12px;
+    border: 1px solid #bfc9d1;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  #loginBox button {
+    background: #2a4d69;
+    color: #fff;
+    border: none;
+    padding: 8px 24px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background 0.2s;
+  }
+  #loginBox button:hover {
+    background: #4b86b4;
+  }
+  #loginError {
+    color: #c0392b;
+    font-size: 0.98rem;
+    margin-bottom: 8px;
+    min-height: 18px;
+  }
   body {
     font-family: 'Segoe UI', Arial, sans-serif;
     background: #f7f9fb;
@@ -57,6 +115,16 @@
   }
 </style>
 <h1>ISA IIT Spacelabs</h1>
+<!-- Login Modal -->
+<div id="loginModal">
+  <form id="loginBox" onsubmit="return false;">
+    <h2>Spacelabs Employee Login</h2>
+    <div id="loginError"></div>
+    <input type="text" id="loginUser" placeholder="Username" autocomplete="username" required />
+    <input type="password" id="loginPass" placeholder="Password" autocomplete="current-password" required />
+    <button type="submit">Login</button>
+  </form>
+</div>
 
 <nav>
   <button>Navigation</button>
@@ -78,5 +146,33 @@ Guidance/
   document.getElementById('guidanceBtn').onclick = function() {
     var sec = document.getElementById('guidanceSection');
     sec.style.display = sec.style.display === 'none' ? 'block' : 'none';
+  };
+  // Simple login logic (client-side only, for demonstration)
+  const users = [
+    { username: "ananthu", password: "ananthu" },
+    { username: "sharu", password: "sharu" },
+    { username: "suhaib", password: "suhaib" },
+    { username: "sooraj", password: "sooraj" },
+    { username: "ravi", password: "ravi" },
+    { username: "vineetha", password: "vineetha" }
+  ];
+  const loginModal = document.getElementById('loginModal');
+  const loginBox = document.getElementById('loginBox');
+  const loginError = document.getElementById('loginError');
+  loginBox.onsubmit = function() {
+    const user = document.getElementById('loginUser').value.trim().toLowerCase();
+    const pass = document.getElementById('loginPass').value;
+    const found = users.find(u => u.username === user && u.password === pass);
+    if (found) {
+      loginModal.style.display = 'none';
+      document.body.style.overflow = '';
+    } else {
+      loginError.textContent = 'Invalid username or password.';
+    }
+  };
+  // Prevent scrolling when modal is open
+  document.body.style.overflow = 'hidden';
+  window.onload = function() {
+    document.getElementById('loginUser').focus();
   };
 </script>
