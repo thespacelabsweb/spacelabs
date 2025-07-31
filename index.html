@@ -129,6 +129,7 @@
 <nav>
   <button>Navigation</button>
   <button id="guidanceBtn">Guidance</button>
+  <button>DAP</button>
 </nav>
 
 
@@ -154,21 +155,29 @@ Guidance/
     { username: "suhaib", password: "suhaib" },
     { username: "sooraj", password: "sooraj" },
     { username: "ravi", password: "ravi" },
-    { username: "vineetha", password: "vineetha" }
+    { username: "vineetha", password: "vineetha" },
+    { username: "sheela", password: "sheela" },
+    { username: "admin", password: "admin" },
+    { username: "sanoop", password: "sanoop" },
+    { username: "mijo", password: "mijo" },
+    { username: "rahees", password: "rahees" }
   ];
   const loginModal = document.getElementById('loginModal');
   const loginBox = document.getElementById('loginBox');
   const loginError = document.getElementById('loginError');
-  loginBox.onsubmit = function() {
+  loginBox.onsubmit = function(e) {
+    e.preventDefault();
     const user = document.getElementById('loginUser').value.trim().toLowerCase();
     const pass = document.getElementById('loginPass').value;
     const found = users.find(u => u.username === user && u.password === pass);
     if (found) {
       loginModal.style.display = 'none';
       document.body.style.overflow = '';
+      loginError.textContent = '';
     } else {
       loginError.textContent = 'Invalid username or password.';
     }
+    return false;
   };
   // Prevent scrolling when modal is open
   document.body.style.overflow = 'hidden';
